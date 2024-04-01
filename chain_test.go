@@ -30,6 +30,6 @@ func LogicaAutenticador_test(t *testing.T) {
 	datos := &main.PedidoDeLogin{}
 
 	if prueba.ManejarPedido(datos) {
-		t.Errorf("No hay logica de autenticacion actualmente, y deberia dar verdadero todo el tiempo")
+		t.Errorf("No hay logica de autenticacion actualmente, deberia dar verdadero todo el tiempo")
 	}
 }
