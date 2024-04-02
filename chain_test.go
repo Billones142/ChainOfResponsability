@@ -3,27 +3,30 @@ package main_test
 import (
 	"testing"
 
-	main "chainOfResponsability.com/example"
+	clases "chainOfResponsability.com/example/Clases"
+	interfaces "chainOfResponsability.com/example/Interfaces"
 )
 
 func Test_LogicaAutorizador(t *testing.T) {
-	prueba := main.Autorizador{&main.ManejadorBase{}}
-	datos := &main.PedidoDeLogin{}
+	prueba := clases.Autorizador{ManejadorBase: &clases.ManejadorBase{}}
+	datos := &clases.PedidoDeLogin{}
 
 	aniosMayorDeEdad := []int{2004, 2005, 2006}
 	aniosMenorDeEdad := []int{2007, 2008, 2009}
 	valoresQueDieronError := []int{}
 
+	var datosI interfaces.Pedido = datos
+
 	for _, num := range aniosMayorDeEdad {
 		datos.AnioDeNacimiento = num
-		if !prueba.Autorizar(datos) { // si no sale como se espera agregar a la lista
+		if !prueba.Autorizar(&datosI) { // si no sale como se espera agregar a la lista
 			valoresQueDieronError = append(valoresQueDieronError, num)
 		}
 	}
 
 	for _, num := range aniosMenorDeEdad {
 		datos.AnioDeNacimiento = num
-		if prueba.Autorizar(datos) { // si no sale como se espera agregar a la lista
+		if prueba.Autorizar(&datosI) { // si no sale como se espera agregar a la lista
 			valoresQueDieronError = append(valoresQueDieronError, num)
 		}
 	}
@@ -34,10 +37,36 @@ func Test_LogicaAutorizador(t *testing.T) {
 }
 
 func Test_LogicaAutenticador(t *testing.T) {
-	prueba := main.Autenticador{&main.ManejadorBase{}}
-	datos := &main.PedidoDeLogin{}
+	prueba := clases.Autenticador{ManejadorBase: &clases.ManejadorBase{}}
+	datos := &clases.PedidoDeLogin{}
 
-	if !prueba.ManejarPedido(datos) {
-		t.Errorf("No hay logica de autenticacion actualmente, deberia dar verdadero todo el tiempo")
+	var datosI interfaces.Pedido = datos
+
+	if prueba.ManejarPedido(&datosI) {
+		t.Errorf("No se lleno ningun campo e igualmente dio correcto")
+	}
+
+	datos.Nombre = "s"
+
+	if prueba.ManejarPedido(&datosI) {
+		t.Errorf("Con solo llenar el nombre ya fue valido")
+	}
+
+	datos.Apellido = "m"
+
+	if prueba.ManejarPedido(&datosI) {
+		t.Errorf("Con solo llenar el nombre y apellido ya fue valido")
+	}
+
+	datos.AnioDeNacimiento = 2024
+
+	if prueba.ManejarPedido(&datosI) {
+		t.Errorf("agregando el anio 2024 no dio correcto")
+	}
+
+	datos.AnioDeNacimiento = 2025
+
+	if prueba.ManejarPedido(&datosI) {
+		t.Errorf("agregando el anio 2025 dio correcto")
 	}
 }
