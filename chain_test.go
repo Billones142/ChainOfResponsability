@@ -11,7 +11,7 @@ func Test_LogicaAutorizador(t *testing.T) {
 	prueba := clases.Autorizador{ManejadorBase: &clases.ManejadorBase{}}
 	datos := &clases.PedidoDeLogin{}
 
-	aniosMayorDeEdad := []int{2004, 2005, 2006}
+	aniosMayorDeEdad := []int{2004, 2005, 2006, 2009}
 	aniosMenorDeEdad := []int{2007, 2008, 2009}
 	valoresQueDieronError := []int{}
 
