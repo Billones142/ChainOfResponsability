@@ -3,7 +3,7 @@ package clases
 import (
 	"fmt"
 
-	interfaces "chainOfResponsability.com/example/Interfaces"
+	interfaces "github.com/Billones142/ChainOfResponsability/Interfaces"
 )
 
 // Autorizador maneja la autorización

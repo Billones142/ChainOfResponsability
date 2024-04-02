@@ -1,6 +1,6 @@
 package clases
 
-import interfaces "chainOfResponsability.com/example/Interfaces"
+import interfaces "github.com/Billones142/ChainOfResponsability/Interfaces"
 
 // PedidoDeLogin representa una solicitud
 type PedidoDeLogin struct {

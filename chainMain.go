@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	clases "chainOfResponsability.com/example/Clases"
-	interfaces "chainOfResponsability.com/example/Interfaces"
+	clases "github.com/Billones142/ChainOfResponsability/Clases"
+	interfaces "github.com/Billones142/ChainOfResponsability/Interfaces"
 )
 
 func main() {

@@ -1,7 +1,7 @@
 package clases
 
 import (
-	interfaces "chainOfResponsability.com/example/Interfaces"
+	interfaces "github.com/Billones142/ChainOfResponsability/Interfaces"
 )
 
 // ManejadorBase es una implementación básica de la interfaz Handler

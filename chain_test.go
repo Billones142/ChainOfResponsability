@@ -3,8 +3,8 @@ package main_test
 import (
 	"testing"
 
-	clases "chainOfResponsability.com/example/Clases"
-	interfaces "chainOfResponsability.com/example/Interfaces"
+	clases "github.com/Billones142/ChainOfResponsability/Clases"
+	interfaces "github.com/Billones142/ChainOfResponsability/Interfaces"
 )
 
 func Test_LogicaAutorizador(t *testing.T) {
