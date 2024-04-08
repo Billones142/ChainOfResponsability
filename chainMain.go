@@ -27,7 +27,7 @@ func main() {
 		Sexo:             true,
 	}
 
-	var pedidoInterfaz interfaces.Pedido = pedido
+	var pedidoInterfaz interfaces.Pedido = &pedido
 
 	if autenticador.ManejarPedido(&pedidoInterfaz) { // se le da al primero de la cadena el pedido
 		fmt.Println("Login exitoso")

@@ -10,3 +10,7 @@ type PedidoDeLogin struct {
 	AnioDeNacimiento int
 	Sexo             bool //true:hombre false:mujer
 }
+
+func (r *PedidoDeLogin) GetNumeroDePedido() int {
+	return 0
+}

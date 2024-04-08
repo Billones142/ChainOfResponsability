@@ -22,20 +22,22 @@ func (a *Autenticador) ManejarPedido(pedido *interfaces.Pedido) bool {
 }
 
 func (a *Autenticador) Autenticar(pedido *interfaces.Pedido) bool {
+	autenticado := false
+
 	pedidoDeLogin, ok := (*pedido).(*PedidoDeLogin) // "type assertion"
 	if !ok {
 		return false
-	}
+	} else {
+		// Lógica de autenticación
+		nombreValido := pedidoDeLogin.Nombre != ""
+		apellidoValido := pedidoDeLogin.Apellido != ""
+		anioValido := (pedidoDeLogin.AnioDeNacimiento <= 2024)
 
-	autenticado := false
-	// Lógica de autenticación
-	nombreValido := pedidoDeLogin.Nombre == ""
-	apellidoValido := pedidoDeLogin.Apellido == ""
-	anioValido := (pedidoDeLogin.AnioDeNacimiento >= 2024)
+		valoresAutenticos := nombreValido && apellidoValido && anioValido
+		if valoresAutenticos {
+			autenticado = true
+		}
 
-	valoresAutenticos := nombreValido && apellidoValido && anioValido
-	if valoresAutenticos {
-		autenticado = true
 	}
 
 	return autenticado

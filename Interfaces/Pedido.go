@@ -1,3 +1,5 @@
 package interfaces
 
-type Pedido interface{}
+type Pedido interface {
+	GetNumeroDePedido() int
+}
