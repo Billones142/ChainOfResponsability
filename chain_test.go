@@ -44,29 +44,34 @@ func Test_LogicaAutenticador(t *testing.T) {
 
 	if prueba.ManejarPedido(&datosI) {
 		t.Errorf("No se lleno ningun campo e igualmente dio correcto")
+		t.FailNow()
 	}
 
 	datos.Nombre = "s"
 
 	if prueba.ManejarPedido(&datosI) {
 		t.Errorf("Con solo llenar el nombre ya fue valido")
+		t.FailNow()
 	}
 
 	datos.Apellido = "m"
 
 	if prueba.ManejarPedido(&datosI) {
-		t.Errorf("Con solo llenar el nombre y apellido ya fue valido")
+		t.Error("agregando el apellido ya fue valido")
+		t.FailNow()
 	}
 
 	datos.AnioDeNacimiento = 2024
 
-	if prueba.ManejarPedido(&datosI) {
+	if !prueba.ManejarPedido(&datosI) {
 		t.Errorf("agregando el anio 2024 no dio correcto")
+		t.FailNow()
 	}
 
 	datos.AnioDeNacimiento = 2025
 
 	if prueba.ManejarPedido(&datosI) {
 		t.Errorf("agregando el anio 2025 dio correcto")
+		t.FailNow()
 	}
 }

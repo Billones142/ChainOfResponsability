@@ -25,13 +25,11 @@ func (a *Autenticador) Autenticar(pedido *interfaces.Pedido) bool {
 	autenticado := false
 
 	pedidoDeLogin, ok := (*pedido).(*PedidoDeLogin) // "type assertion"
-	if !ok {
-		return false
-	} else {
+	if ok {
 		// Lógica de autenticación
 		nombreValido := pedidoDeLogin.Nombre != ""
 		apellidoValido := pedidoDeLogin.Apellido != ""
-		anioValido := (pedidoDeLogin.AnioDeNacimiento <= 2024)
+		anioValido := (pedidoDeLogin.AnioDeNacimiento <= 2024) && (pedidoDeLogin.AnioDeNacimiento != 0)
 
 		valoresAutenticos := nombreValido && apellidoValido && anioValido
 		if valoresAutenticos {
