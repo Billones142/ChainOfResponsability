@@ -11,13 +11,12 @@ type Autorizador struct {
 	*ManejadorBase
 }
 
-func (a *Autorizador) ManejarPedido(pedido *interfaces.Pedido) bool {
+func (a *Autorizador) ManejarPedido(pedido *interfaces.Pedido, mensajes ...string) (bool, []string) {
 	if a.Autorizar(pedido) {
-		fmt.Println("Autorización exitosa")
-		return a.ManejadorBase.ManejarPedido(pedido)
+		return a.ManejadorBase.ManejarPedido(pedido, append(mensajes, "Autorización exitosa")...)
 	} else {
 		fmt.Println("Autorización fallida")
-		return false
+		return false, append(mensajes, "Autorización fallida")
 	}
 }
 

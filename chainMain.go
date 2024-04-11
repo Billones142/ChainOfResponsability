@@ -29,7 +29,13 @@ func main() {
 
 	var pedidoInterfaz interfaces.Pedido = &pedido
 
-	if autenticador.ManejarPedido(&pedidoInterfaz) { // se le da al primero de la cadena el pedido
+	estadoLoguin, mensajes := autenticador.ManejarPedido(&pedidoInterfaz)
+
+	for _, mensaje := range mensajes {
+		fmt.Println(mensaje)
+	}
+	fmt.Println()
+	if estadoLoguin { // se le da al primero de la cadena el pedido
 		fmt.Println("Login exitoso")
 	} else {
 		fmt.Println("Login fallido")

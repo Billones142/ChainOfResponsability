@@ -11,12 +11,12 @@ type ManejadorDelLogin struct {
 	*ManejadorBase
 }
 
-func (l *ManejadorDelLogin) ManejarPedido(pedido *interfaces.Pedido) bool {
+func (l *ManejadorDelLogin) ManejarPedido(pedido *interfaces.Pedido, mensajes ...string) (bool, []string) {
 	pedidoDeLogin, ok := (*pedido).(*PedidoDeLogin) // "type assertion"
 	if !ok {
-		return false
+		return false, mensajes
 	}
 
 	fmt.Println("Registro de solicitud " + pedidoDeLogin.Apellido + " " + pedidoDeLogin.Nombre)
-	return l.ManejadorBase.ManejarPedido(pedido)
+	return l.ManejadorBase.ManejarPedido(pedido, mensajes...)
 }

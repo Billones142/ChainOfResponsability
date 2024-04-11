@@ -1,8 +1,6 @@
 package clases
 
 import (
-	"fmt"
-
 	interfaces "github.com/Billones142/ChainOfResponsability/Interfaces"
 )
 
@@ -11,13 +9,11 @@ type Autenticador struct {
 	*ManejadorBase
 }
 
-func (a *Autenticador) ManejarPedido(pedido *interfaces.Pedido) bool {
+func (a *Autenticador) ManejarPedido(pedido *interfaces.Pedido, mensajes ...string) (bool, []string) {
 	if a.Autenticar(pedido) {
-		fmt.Println("Autenticación exitosa")
-		return a.ManejadorBase.ManejarPedido(pedido)
+		return a.ManejadorBase.ManejarPedido(pedido, append(mensajes, "Autenticación exitosa")...)
 	} else {
-		fmt.Println("Autenticación fallida")
-		return false
+		return false, append(mensajes, "Autenticación fallida")
 	}
 }
 
